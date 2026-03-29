@@ -1,45 +1,46 @@
-# Job Sources Configuration
+# Job Sources URLs for Data Roles
 
-This file contains comprehensive configurations for job boards and company career pages.
-It includes over 100 companies and multiple job boards, such as Indeed, LinkedIn, Glassdoor, etc.
+This file contains the comprehensive URLs for career pages of various companies along with the keywords and recent job postings filter for roles such as Data Analyst, Data Engineer, and Data Scientist.
 
-## Job Boards
+## Companies and Job Boards
 
-### Indeed
-- **API Endpoint**: `https://api.indeed.com/ads/apisearch`
-- **Parameters**:
-  - `q`: Job search keywords
-  - `l`: Location
-  - `sort`: Sort order
+### Google
+- [Google Careers](https://career.google.com/jobs/results)
 
-### LinkedIn
-- **API Endpoint**: `https://api.linkedin.com/v2/jobs`
-- **Parameters**:
-  - `keywords`: Job search keywords
-  - `location`: Location
+### Microsoft
+- [Microsoft Careers](https://careers.microsoft.com/us/en)
 
-### Glassdoor
-- **API Endpoint**: `https://api.glassdoor.com/api/api.htm`
-- **Parameters**:
-  - `t.p`: Partner ID
-  - `t.k`: Key
-  - `userip`: User IP
-  - `useragent`: User agent
-  - `action`: Job search action
+### Amazon
+- [Amazon Jobs](https://www.amazon.jobs/en/)
 
-## Company Career Pages
+### Meta (Facebook)
+- [Meta Careers](https://www.metacareers.com/jobs)
 
-### Company List
-- **Company 1**: Company Name
-  - **Careers Page**: `https://company1.com/careers`
+### Netflix
+- [Netflix Jobs](https://jobs.netflix.com/)
 
-- **Company 2**: Company Name
-  - **Careers Page**: `https://company2.com/careers`
+### Consulting Firms
+- [McKinsey Careers](https://www.mckinsey.com/careers/search.jobs)
+- [Boston Consulting Group Careers](https://www.bcg.com/careers/find-jobs)
 
-- **Company 3**: Company Name
-  - **Careers Page**: `https://company3.com/careers`
+### Finance Firms
+- [Goldman Sachs Careers](https://www.goldmansachs.com/careers/)
+- [JPMorgan Careers](https://careers.jpmorgan.com/us/en/home)
 
-... [Add 100+ companies as needed] ...
+### Tech Companies
+- [Apple Careers](https://jobs.apple.com/)
+- [IBM Careers](https://www.ibm.com/employment/)
 
-## Note:
-Make sure to keep this information up to date with the latest API documentation and career page links.
+### Job Boards
+- [LinkedIn Jobs](https://www.linkedin.com/jobs/)
+- [Indeed](https://www.indeed.com/)
+
+## Keywords
+- Data Analyst
+- Data Engineer
+- Data Scientist
+
+## Date Filter
+- Postings from: 1-2 days ago
+
+Ensure to filter the results based on the above keywords and date criteria to receive the latest job postings efficiently.
