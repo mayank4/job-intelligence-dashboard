@@ -1,47 +1,62 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Job Intelligence Dashboard</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f5f5f5; }
-        h1 { color: #333; }
-        .container { max-width: 1200px; margin: 0 auto; }
-        .section { background: white; padding: 20px; margin: 20px 0; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-        .skill-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; }
-        .skill-item { background: #e3f2fd; padding: 10px; border-radius: 5px; text-align: center; }
-        .job-list { display: flex; flex-direction: column; gap: 10px; }
-        .job-item { background: #f9f9f9; padding: 15px; border-left: 4px solid #2196F3; }
-        a { color: #2196F3; text-decoration: none; }
-        a:hover { text-decoration: underline; }
+        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background: #f5f5f5; }
+        .container { max-width: 1200px; margin: 0 auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        h1 { color: #333; margin-bottom: 5px; }
+        .meta { color: #999; font-size: 0.9em; margin-bottom: 20px; }
+        h2 { color: #2196F3; margin-top: 30px; border-bottom: 2px solid #2196F3; padding-bottom: 10px; }
+        .skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-bottom: 30px; }
+        .skill { background: #e3f2fd; padding: 15px; border-radius: 5px; text-align: center; border-left: 4px solid #2196F3; }
+        .skill-name { font-weight: bold; color: #1976D2; }
+        .skill-count { font-size: 1.5em; color: #2196F3; margin-top: 5px; }
+        .jobs { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 15px; }
+        .job-card { background: #fafafa; border-left: 4px solid #4CAF50; padding: 15px; border-radius: 5px; }
+        .job-title { font-weight: bold; color: #333; margin-bottom: 5px; }
+        .job-company { color: #2196F3; font-weight: 600; }
+        .job-meta { color: #666; font-size: 0.9em; }
+        .job-link { display: inline-block; margin-top: 10px; background: #4CAF50; color: white; padding: 8px 15px; text-decoration: none; border-radius: 4px; transition: background 0.3s; }
+        .job-link:hover { background: #45a049; }
+        .source-badge { display: inline-block; background: #FF9800; color: white; font-size: 0.75em; padding: 3px 8px; border-radius: 3px; margin-left: 10px; }
+        .refresh-btn { background: #2196F3; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; }
+        .refresh-btn:hover { background: #0b7dda; }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Job Intelligence Dashboard</h1>
-        
-        <div class="section">
-            <h2>Top Skills in Demand</h2>
-            <div class="skill-list">
-                {% for skill, count in skills.items() %}
-                    <div class="skill-item">
-                        <strong>{{ skill }}</strong><br>
-                        {{ count }} jobs
-                    </div>
-                {% endfor %}
-            </div>
+        <h1>💼 Job Intelligence Dashboard</h1>
+        <div class="meta">
+            Showing <strong>{{ jobs|length }} Data/Analyst Jobs</strong> from live career websites
+            {% if last_update %}<br>Last updated: {{ last_update }}{% endif %}
+            <button class="refresh-btn" onclick="location.href='/api/refresh'">🔄 Refresh Now</button>
         </div>
         
-        <div class="section">
-            <h2>Recent Job Listings</h2>
-            <div class="job-list">
-                {% for job in jobs %}
-                    <div class="job-item">
-                        <h3>{{ job.title }}</h3>
-                        <p><strong>{{ job.company }}</strong> - {{ job.location }}</p>
-                        <a href="{{ job.link }}" target="_blank">View Job →</a>
-                    </div>
-                {% endfor %}
-            </div>
+        <h2>📊 In-Demand Skills</h2>
+        <div class="skills">
+            {% for skill, count in skills.items() %}
+                <div class="skill">
+                    <div class="skill-name">{{ skill }}</div>
+                    <div class="skill-count">{{ count }}</div>
+                </div>
+            {% endfor %}
+        </div>
+        
+        <h2>🔥 Latest Data/Analyst Job Openings</h2>
+        <div class="jobs">
+            {% for job in jobs %}
+                <div class="job-card">
+                    <div class="job-title">{{ job.title }}<span class="source-badge">{{ job.source }}</span></div>
+                    <div class="job-company">{{ job.company }}</div>
+                    <div class="job-meta">📍 {{ job.location }}</div>
+                    <a href="{{ job.link }}" target="_blank" class="job-link">View Job →</a>
+                </div>
+            {% else %}
+                <p>Loading jobs... Please wait.</p>
+            {% endfor %}
         </div>
     </div>
 </body>
